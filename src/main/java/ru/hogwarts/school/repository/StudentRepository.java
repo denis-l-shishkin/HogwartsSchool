@@ -16,6 +16,9 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     List<Student> findAllByFaculty_Id(Long id);
 
-    @Query("SELECT s.faculty FROM Student as s WHERE s.name = :name")
-    Optional<Faculty> findFacultyByName(@Param("name") String name);
+    /*@Query("SELECT s.faculty FROM Student as s WHERE s.name = :name")
+    Optional<Faculty> findFacultyByName(@Param("name") String name);*/
+
+    Student findByName(String name);
+
 }
