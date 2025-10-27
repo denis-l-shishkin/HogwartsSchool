@@ -172,4 +172,21 @@ public class StudentControllerTest {
 
         verify(studentService).deleteStudent(1L);
     }
+
+    @Test
+    void whenGetStudentByIdWithNonExistingId_thenShouldReturnNotFound() throws Exception {
+        when(studentService.getStudent(999L)).thenReturn(null);
+
+        mockMvc.perform(get("/student/999"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void whenGetFacultyByStudentNameWithNonExistingStudent_thenShouldReturnNotFound() throws Exception {
+        when(studentService.findFacultyByStudentName("Несуществующий cтудент")).thenReturn(null);
+
+        mockMvc.perform(get("/student/faculty_by_student")
+                        .param("name", "Несуществующий cтудент"))
+                .andExpect(status().isNotFound());
+    }
 }
