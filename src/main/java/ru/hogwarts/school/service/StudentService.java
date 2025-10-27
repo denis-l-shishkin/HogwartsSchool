@@ -51,8 +51,11 @@ public class StudentService {
         return new ArrayList<>();
     }
 
-    public Faculty findFacultyByStudentName(String name) {
+    /*public Faculty findFacultyByStudentName(String name) {
         return studentRepository.findFacultyByName(name)
                 .orElseThrow(() -> new StudentNotFoundException("Студент не найден"));
+    }*/
+    public Faculty findFacultyByStudentName(String name) {
+        return studentRepository.findByName(name).getFaculty();
     }
 }
