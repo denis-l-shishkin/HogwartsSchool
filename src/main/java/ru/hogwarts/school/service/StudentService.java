@@ -52,7 +52,6 @@ public class StudentService {
     }
 
     public Faculty findFacultyByStudentName(String name) {
-        return studentRepository.findFacultyByName(name)
-                .orElseThrow(() -> new StudentNotFoundException("Студент не найден"));
+        return studentRepository.findByName(name).getFaculty();
     }
 }
