@@ -17,4 +17,13 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findAllByFaculty_Id(Long id);
 
     Student findByName(String name);
+
+    @Query("SELECT count(*) FROM Student")
+    Long countAllStudents();
+
+    @Query("SELECT avg(age) FROM Student")
+    float getAverageAge();
+
+    @Query("SELECT s FROM Student as s ORDER BY s.id DESC LIMIT 5")
+    List<Student> getFiveLatestStudents();
 }

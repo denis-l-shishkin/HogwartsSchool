@@ -54,4 +54,16 @@ public class StudentService {
     public Faculty findFacultyByStudentName(String name) {
         return studentRepository.findByName(name).getFaculty();
     }
+
+    public Long countAllStudents() {
+        return studentRepository.countAllStudents();
+    }
+
+    public float getAverageAge() {
+        return studentRepository.getAverageAge();
+    }
+
+    public List<Student> getFiveLatestStudents() {
+        return studentRepository.getFiveLatestStudents();
+    }
 }

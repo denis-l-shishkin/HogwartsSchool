@@ -74,4 +74,19 @@ public class StudentController {
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/count")
+    public Long countStudents() {
+        return studentService.countAllStudents();
+    }
+
+    @GetMapping("/average_age")
+    public float getAverageAge() {
+        return studentService.getAverageAge();
+    }
+
+    @GetMapping("/five_latest_students")
+    public List<Student> getFiveLatestStudents() {
+        return studentService.getFiveLatestStudents();
+    }
 }

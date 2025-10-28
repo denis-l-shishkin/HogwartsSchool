@@ -18,6 +18,7 @@ public class Avatar {
     private String mediaType;
 
     @Lob
+    @JsonIgnore
     private byte[] data;
 
     @OneToOne
