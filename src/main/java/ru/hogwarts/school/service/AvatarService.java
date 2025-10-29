@@ -64,7 +64,10 @@ public class AvatarService {
     }
 
     public Page<Avatar> getAllAvatars(Integer page, Integer size) {
-        Pageable pageable = PageRequest.of(page - 1, size);
-        return avatarRepository.findAll(pageable);
+        if (page > 0 && size > 0) {
+            Pageable pageable = PageRequest.of(page - 1, size);
+            return avatarRepository.findAll(pageable);
+        }
+        throw new IllegalArgumentException("Недопустимое значение страницы");
     }
 }

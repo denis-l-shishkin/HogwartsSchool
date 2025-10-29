@@ -19,7 +19,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     Student findByName(String name);
 
     @Query("SELECT count(*) FROM Student")
-    Long countAllStudents();
+    long countAllStudents();
 
     @Query("SELECT avg(age) FROM Student")
     float getAverageAge();

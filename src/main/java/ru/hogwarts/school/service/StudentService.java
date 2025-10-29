@@ -55,7 +55,7 @@ public class StudentService {
         return studentRepository.findByName(name).getFaculty();
     }
 
-    public Long countAllStudents() {
+    public long countAllStudents() {
         return studentRepository.countAllStudents();
     }
 
