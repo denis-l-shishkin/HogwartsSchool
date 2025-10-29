@@ -38,7 +38,7 @@ public class StudentControllerTest {
 
     @Test
     void whenCreateStudent_thenShouldReturnCreatedStudent() throws Exception {
-        Student student = new Student(null, "Гарри Поттер", 11);
+        Student student = new Student((Long) null, "Гарри Поттер", 11);
 
         String name = "Гарри Поттер";
         Integer age = 11;
