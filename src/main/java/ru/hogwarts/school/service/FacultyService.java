@@ -9,7 +9,9 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
 import ru.hogwarts.school.repository.StudentRepository;
 
+import javax.lang.model.element.Name;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -76,4 +78,10 @@ public class FacultyService {
         return new ArrayList<>(students);
     }
 
+    public String getMaxLengthNameFaculty() {
+        return facultyRepository.findAll().stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length))
+                .orElse("Список факультетов пуст");
+    }
 }

@@ -89,4 +89,24 @@ public class StudentController {
     public List<Student> getFiveLatestStudents() {
         return studentService.getFiveLatestStudents();
     }
+
+    @GetMapping("/all_names")
+    public List<String> getAllNamesBeginChar(@RequestParam String letter) {
+        // Можем передать любую букву, в том числе А.
+        // Если требуется жестко закрепить букву в коде, то убираем отсюда
+        // принимаемый аргумент, в сервисе также убираем передаваемый аргумент
+        // и в сервисе строчка фильтра будет выглядеть так
+        // .filter(name -> name.startsWith("А"))
+        return studentService.getAllNamesBeginWithLetter(letter);
+    }
+
+    @GetMapping("/average_age_2")
+    public double getAverageAgeWithFindAll() {
+        return studentService.getAverageAgeWithFindAll();
+    }
+
+    @GetMapping("/step_4")
+    public long calculateExample() {
+        return studentService.calculateExample();
+    }
 }

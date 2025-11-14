@@ -73,4 +73,9 @@ public class FacultyController {
         facultyService.deleteFaculty(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/max_length")
+    public String getMaxLengthNameFaculty(){
+        return facultyService.getMaxLengthNameFaculty();
+    }
 }
