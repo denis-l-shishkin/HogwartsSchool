@@ -17,8 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -188,5 +187,25 @@ public class StudentControllerTest {
         mockMvc.perform(get("/student/faculty_by_student")
                         .param("name", "Несуществующий cтудент"))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void whenPrintParallelStudent_thenShouldCallServiceMethod() throws Exception {
+        doNothing().when(studentService).printParallelStudent();
+
+        mockMvc.perform(get("/students/print-parallel"))
+                .andExpect(status().isOk());
+
+        verify(studentService, times(1)).printParallelStudent();
+    }
+
+    @Test
+    void whenPrintSyncStudent_thenShouldCallServiceMethod() throws Exception {
+        doNothing().when(studentService).printSynchronizedStudent();
+
+        mockMvc.perform(get("/students/print-synchronized"))
+                .andExpect(status().isOk());
+
+        verify(studentService, times(1)).printSynchronizedStudent();
     }
 }
