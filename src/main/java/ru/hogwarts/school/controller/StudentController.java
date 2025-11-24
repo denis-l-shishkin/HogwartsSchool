@@ -109,4 +109,14 @@ public class StudentController {
     public long calculateExample() {
         return studentService.calculateExample();
     }
+
+    @GetMapping("/print-parallel")
+    public void printParallelStudent(){
+        studentService.printParallelStudent();
+    }
+
+    @GetMapping("/print-synchronized")
+    public void printSyncStudent(){
+        studentService.printSynchronizedStudent();
+    }
 }

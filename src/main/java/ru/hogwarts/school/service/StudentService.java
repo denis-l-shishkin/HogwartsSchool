@@ -145,4 +145,86 @@ public class StudentService {
         */
     }
 
+    public void printParallelStudent() {
+        List<Student> students = getAllStudents();
+
+        if (students.size() < 6) {
+            System.out.println("Недостаточно студентов для вывода");
+            return;
+        }
+
+        printStudent(students, 0, 0);
+        printStudent(students, 1, 0);
+
+        Thread thread1 = new Thread(() -> {
+            printStudent(students, 2, 1);
+            printStudent(students, 3, 1);
+        });
+
+        Thread thread2 = new Thread(() -> {
+            printStudent(students, 4, 2);
+            printStudent(students, 5, 2);
+        });
+
+        thread1.start();
+        thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public void printStudent(List<Student> students, int index, int thread){
+        System.out.println(students.get(index).getName() + " Поток " + thread);
+        sleep(2000);
+    }
+
+    private void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public void printSynchronizedStudent() {
+        List<Student> students = getAllStudents();
+
+        if (students.size() < 6) {
+            System.out.println("Недостаточно студентов для вывода");
+            return;
+        }
+
+        printSyncStudent(students, 0, 0);
+        printSyncStudent(students, 1, 0);
+
+        Thread thread1 = new Thread(() -> {
+            printSyncStudent(students, 2, 1);
+            printSyncStudent(students, 3, 1);
+        });
+
+        Thread thread2 = new Thread(() -> {
+            printSyncStudent(students, 4, 2);
+            printSyncStudent(students, 5, 2);
+        });
+
+        thread1.start();
+        thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public synchronized void printSyncStudent(List<Student> students, int index, int thread){
+        System.out.println(students.get(index).getName() + " Поток " + thread);
+        sleep(2000);
+    }
+
 }
